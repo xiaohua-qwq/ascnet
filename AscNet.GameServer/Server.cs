@@ -39,14 +39,24 @@ namespace AscNet.GameServer
                 try
                 {
                     listener.Start();
-                    log.Info($"{nameof(GameServer)} started and listening on port {Common.Common.config.GameServer.Port}");
+                    log.Info("服务器初始化完成");
+                    log.Info(" ");
+                    log.Info(" _____ _                        ");
+                    log.Info("|  ___| | _____      _____ _ __ ");
+                    log.Info("| |_  | |/ _ \\ \\ /\\ / / _ \\ '__|");
+                    log.Info("|  _| | | (_) \\ V  V /  __/ |   ");
+                    log.Info("|_|   |_|\\___/ \\_/\\_/ \\___|_|   ");
+                    log.Info("                           @2024");
+                    log.Info(" ");
+                    log.Warn("测试构建 时间2024-01-29");
+                    log.Info($"{nameof(GameServer)} 已加载并监听端口 {Common.Common.config.GameServer.Port}");
 
                     while (true)
                     {
                         TcpClient tcpClient = listener.AcceptTcpClient();
                         string id = tcpClient.Client.RemoteEndPoint!.ToString()!;
 
-                        log.Warn($"{id} connected");
+                        log.Warn($"{id} 已连接");
                         Sessions.Add(id, new Session(id, tcpClient));
                     }
                 }
